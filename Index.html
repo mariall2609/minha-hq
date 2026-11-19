@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ Digital - Cuphead e Mugman</title>
+    <style>
+        /* Reset básico e configurações globais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; /* Fonte estilo quadrinhos */
+            background-color: #2c2c2c;
+            background-image: radial-gradient(#444 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: 1px;
+        }
+
+        /* Container principal da HQ */
+        .hq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Estilo de cada cena (painel) */
+        .scene {
+            position: relative;
+            width: 100%;
+            border: 4px solid #111;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8);
+            background-color: #000;
+        }
+
+        .scene img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Botão de Ouvir sobreposto */
+        .btn-ouvir {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: #ffcc00;
+            color: #111;
+            border: 3px solid #111;
+            padding: 10px 18px;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 #111;
+            transition: all 0.1s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ouvir:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 #111;
+            background-color: #ffd633;
+        }
+
+        .btn-ouvir:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #111;
+        }
+
+        /* Estado do botão quando está tocando */
+        .btn-ouvir.speaking {
+            background-color: #ff4444;
+            color: white;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Ícone de som fake em CSS */
+        .icon-sound {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-left: 6px solid currentColor;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            position: relative;
+        }
+        .icon-sound::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -6px;
+            width: 12px;
+            height: 12px;
+            border: 3px solid currentColor;
+            border-radius: 50%;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Ajustes responsivos para telas menores */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px 5px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+            .btn-ouvir {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>A Aposta de Cuphead e Mugman</h1>
+
+    <div class="hq-container">
+        
+        <!-- Cena 1 -->
+        <div class="scene">
+            <img src="imagens/cena1.png" alt="Cena 1: Cuphead e Mugman entram no cassino">
+            <button class="btn-ouvir" data-texto="Cuphead e Mugman entram no cassino do Diabo, confiantes de que vão ganhar muito dinheiro. Vamos, Mug! Hoje a gente ganha!">
+                <span class="icon-sound"></span> Ouvir
+            </button>
+        </div>
+
+        <!-- Cena 2 -->
+        <div class="scene">
+            <img src="imagens/cena2.png" alt="Cena 2: O Diabo apresenta o contrato">
+            <button class="btn-ouvir" data-texto="Mas a sorte não estava do lado deles. Vocês perderam a aposta. Agora, suas almas pertencem a mim! Ou vocês conseguem os contratos dos outros devedores... ou nunca mais verão a luz do dia.">
+                <span class="icon-sound"></span> Ouvir
+            </button>
+        </div>
+
+        <!-- Cena 3 -->
+        <div class="scene">
+            <img src="imagens/cena3.png" alt="Cena 3: Eles conseguem os contratos">
+            <button class="btn-ouvir" data-texto="Depois de muitos desafios, Cuphead e Mugman enfrentaram chefes assustadores e reuniram os contratos dos devedores. Conseguimos, Mug! Agora só falta voltar... e entregar todos os contratos para o Diabo!">
+                <span class="icon-sound"></span> Ouvir
+            </button>
+        </div>
+
+        <!-- Cena 4 -->
+        <div class="scene">
+            <img src="imagens/cena4.png" alt="Cena 4: A vitória sobre o Diabo">
+            <button class="btn-ouvir" data-texto="Com coragem e união, Cuphead e Mugman enfrentam o Diabo e conseguem derrotá-lo. Nossas almas são nossas! E assim, os irmãos voltam para casa como heróis, livres da dívida do Diabo.">
+                <span class="icon-sound"></span> Ouvir
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botoes = document.querySelectorAll('.btn-ouvir');
+            let falaAtual = null;
+
+            // Função para parar qualquer áudio que esteja tocando
+            function pararFala() {
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                }
+                botoes.forEach(btn => {
+                    btn.classList.remove('speaking');
+                    btn.innerHTML = '<span class="icon-sound"></span> Ouvir';
+                });
+            }
+
+            botoes.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const textoParaFalar = botao.getAttribute('data-texto');
+
+                    // Se o botão clicado já estiver falando, apenas pare.
+                    if (botao.classList.contains('speaking')) {
+                        pararFala();
+                        return;
+                    }
+
+                    // Para qualquer outra fala antes de começar uma nova
+                    pararFala();
+
+                    // Configura a síntese de voz
+                    const utterance = new SpeechSynthesisUtterance(textoParaFalar);
+                    utterance.lang = 'pt-BR'; // Define o idioma para Português do Brasil
+                    utterance.rate = 1.0; // Velocidade normal
+                    utterance.pitch = 1.0; // Tom normal
+
+                    // Tenta encontrar uma voz em português
+                    const vozes = window.speechSynthesis.getVoices();
+                    const vozPT = vozes.find(voz => voz.lang.includes('pt-BR') || voz.lang.includes('pt-PT'));
+                    if (vozPT) {
+                        utterance.voice = vozPT;
+                    }
+
+                    // Eventos para mudar a aparência do botão
+                    utterance.onstart = () => {
+                        botao.classList.add('speaking');
+                        botao.innerHTML = '<span class="icon-sound"></span> Parar';
+                    };
+
+                    utterance.onend = () => {
+                        botao.classList.remove('speaking');
+                        botao.innerHTML = '<span class="icon-sound"></span> Ouvir';
+                    };
+
+                    utterance.onerror = (event) => {
+                        console.error('Erro na síntese de voz:', event);
+                        botao.classList.remove('speaking');
+                        botao.innerHTML = '<span class="icon-sound"></span> Ouvir';
+                    };
+
+                    // Inicia a fala
+                    falaAtual = utterance;
+                    window.speechSynthesis.speak(utterance);
+                });
+            });
+
+            // Alguns navegadores precisam que as vozes sejam carregadas de forma assíncrona
+            window.speechSynthesis.onvoiceschanged = () => {
+                // Apenas para forçar o carregamento das vozes
+                window.speechSynthesis.getVoices();
+            };
+        });
+    </script>
+</body>
+</html>
